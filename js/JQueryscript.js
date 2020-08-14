@@ -2,22 +2,21 @@ function startGame() {
   for (i = 1; i <= 9; i++) {
     clearBox(i);
   }
-  document.turn = "X";
-  document.winner = null;
-  setMessage(document.turn + " gets to start");
+  $("turn") = "X";
+  $("winner") = null;
+  setMessage($(turn) + " gets to start");
 }
 
 function setMessage(msg) {
-  // document.getElementById("message").innerText = msg;
-  $("#message").text(msg);
-  // console.log(document.getElementById("message").innerText);
+  $("message").innerText = msg;
+  console.log($("message").innerText);
 }
 
 function nextMove(square) {
-  if (document.winner !== null) {
-    setMessage(document.turn + " already won!");
+  if ($(winner) !== null) {
+    setMessage($(turn) + " already won!");
   } else if (square.innerText === "") {
-    square.innerText = document.turn;
+    square.innerText = $(turn);
     switchTurn();
   } else {
     setMessage("pick another box");
@@ -26,7 +25,7 @@ function nextMove(square) {
 
 function switchTurn() {
   if (checkForWinner(document.turn)) {
-    setMessage("Congrats! " + document.turn + " has won");
+    setMessage("Congrats! " + $(turn) + " has won");
     document.winner = document.turn;
   } else if (document.turn == "X") {
     document.turn = "O";
@@ -45,7 +44,7 @@ function checkRow(a, b, c, move) {
   return result;
 
   function getBox(number) {
-    return document.getElementById("s" + number).innerText;
+    return $("s" + number).innerText;
   }
 }
 
@@ -67,5 +66,5 @@ function checkForWinner(move) {
 }
 
 function clearBox(number) {
-  return (document.getElementById("s" + number).innerText = "");
+  return ($("s" + number).innerText = "");
 }
